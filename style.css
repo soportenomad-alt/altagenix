@@ -94,7 +94,7 @@ img { max-width: 100%; height: auto; }
   position: fixed;
   top: 0; left: 0;
   width: 100%;
-  height: 80px;
+  height: 94px;
   z-index: 1000;
   transition: all var(--transition-fast);
   display: flex;
@@ -104,7 +104,7 @@ img { max-width: 100%; height: auto; }
 #navbar.scrolled {
   background: rgba(5, 5, 5, 0.85);
   backdrop-filter: blur(20px);
-  height: 70px;
+  height: 84px;
   border-bottom: 1px solid var(--border);
 }
 
@@ -119,20 +119,21 @@ img { max-width: 100%; height: auto; }
 }
 
 .nav-logo, .footer-logo, .contact-logo {
-  height: 38px;
   width: auto;
-  /* Filter trick: Invert makes white black and blue yellow, then hue-rotate 180 shifts yellow back to blue/cyan */
-  filter: invert(1) hue-rotate(180deg) brightness(1.2) contrast(1.1) drop-shadow(0 0 10px rgba(79, 110, 247, 0.2));
+  object-fit: contain;
+  background: transparent;
+  filter: drop-shadow(0 0 8px rgba(79, 110, 247, 0.16));
   transition: all var(--transition-fast);
   display: block;
 }
 
-.footer-logo { height: 48px; margin-bottom: 30px; }
-.contact-logo { height: 60px; width: auto; margin-bottom: 40px; }
+.nav-logo { height: 72px; }
+.footer-logo { height: 96px; margin-bottom: 30px; }
+.contact-logo { height: 148px; width: auto; margin-bottom: 40px; }
 
 .nav-logo:hover, .footer-logo:hover, .contact-logo:hover {
-  filter: invert(1) hue-rotate(180deg) brightness(1.4) contrast(1.2) drop-shadow(0 0 15px rgba(79, 110, 247, 0.4));
-  transform: scale(1.05);
+  filter: drop-shadow(0 0 14px rgba(79, 110, 247, 0.24));
+  transform: scale(1.04);
 }
 
 .nav-links {
@@ -407,6 +408,85 @@ img { max-width: 100%; height: auto; }
 .step-item small { letter-spacing: 0.2em; color: var(--white-muted); }
 .step-item ul { margin-top: 15px; font-size: 13px; color: var(--white-faint); }
 
+
+.identity-block {
+  grid-column: 1 / -1;
+  width: 100%;
+  margin-top: 120px;
+  padding-top: 56px;
+  border-top: 1px solid var(--border);
+}
+
+.identity-header {
+  max-width: 980px;
+  margin-bottom: 46px;
+}
+
+.identity-title {
+  font-family: var(--font-main);
+  font-size: clamp(30px, 4vw, 52px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.identity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(360px, 1fr));
+  gap: 32px;
+  align-items: stretch;
+}
+
+.identity-card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.015));
+  border: 1px solid var(--border);
+  padding: 36px 34px;
+  min-height: 100%;
+  height: 100%;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast);
+}
+
+.identity-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+}
+
+.identity-label {
+  display: inline-block;
+  font-family: var(--font-main);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+
+.identity-card p,
+.values-list {
+  font-size: 15px;
+  line-height: 1.9;
+  color: var(--white-dim);
+}
+
+.values-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.values-list li {
+  margin-bottom: 14px;
+}
+
+.values-list li:last-child {
+  margin-bottom: 0;
+}
+
+.values-list strong {
+  color: var(--white);
+}
+
 /* ===== SHOWREEL ===== */
 .section-video {
   height: 90vh;
@@ -532,9 +612,17 @@ h4 { font-family: var(--font-main); font-size: 18px; font-weight: 700; margin-bo
 
 /* RESPONSIVE */
 @media (max-width: 1024px) {
-  .about-grid, .funding-inner, .contact-inner, .footer-grid { grid-template-columns: 1fr; gap: 60px; }
+  .about-grid, .funding-inner, .contact-inner, .footer-grid, .identity-grid { grid-template-columns: 1fr; gap: 60px; }
   .research-cards, .health-grid { grid-template-columns: repeat(2, 1fr); }
   .stories-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
   .hamburger { display: flex; }
+}
+
+@media (max-width: 768px) {
+  .nav-logo { height: 60px; }
+  .contact-logo { height: 118px; }
+  .footer-logo { height: 82px; }
+  .identity-block { margin-top: 80px; padding-top: 40px; }
+  .identity-card { padding: 28px 24px; }
 }
